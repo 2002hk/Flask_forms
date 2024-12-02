@@ -13,7 +13,10 @@ from wtforms.validators import(
     Email,
     Optional,
     EqualTo
+    
     )
+from email_validator import validate_email, EmailNotValidError
+
 class SignupForm(FlaskForm):
     username=StringField(
         "username",
@@ -27,9 +30,10 @@ class SignupForm(FlaskForm):
         "Date of Birth",
         validators=[Optional()]
     )
-    Gender=SelectField(
+    gender=SelectField(
         "Gender",
-        validators=["Male","Female","Other"]
+        choices=["Male","Female","Other"],
+        validators=[Optional()]
     )
     password=PasswordField(
         "Password",
